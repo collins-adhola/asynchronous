@@ -228,7 +228,75 @@ const whereAmI = function (lat, lng){
     .then(data => renderCountry(data[0]))
     .catch((err) => console.error(`${err.message} 💥`));
   };
-whereAmI(52.508, 13.381);
-whereAmI(19.037, 72.873);
-whereAmI(-33.933, 18.474);
+// whereAmI(52.508, 13.381);
+// whereAmI(19.037, 72.873);
+// whereAmI(-33.933, 18.474);
 
+console.log('*******************Test start***********************************');
+
+setTimeout (()=> console.log('0 sec timer'), 0 );
+Promise.resolve('Resolved promise 1').then(res => 
+console.log(res));
+
+Promise.resolve("Resolved promise 2").then((res) => {
+  for (let i = 0; i < 1000; i++){
+
+  }
+console.log(res)});
+console.log('Test end')
+
+//.......................................................
+const lotteryPromise = new Promise(function(resolve, reject) {
+  if (Math.random() >= 0.5){
+    resolve('You WIN 💰');
+  } else {
+    reject('You lost money 😔')
+  }
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+//********************************************************************************* */
+
+// encapsulate Ansynchronous behaviour into a promise
+
+const lotteryPromise2 = new Promise(function (resolve, reject){
+  console.log(' Lottery draw is on! ');
+  
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve("You WIN!");
+    } else {
+      reject(new Error("You lost your money!"));  // added error object.new Error
+    }
+  }, 2000);  
+});
+
+
+//consume the promise
+lotteryPromise2
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+
+  /**************************************************************** */
+  
+  //Promisfying Settimeout
+  const wait = function(seconds) {
+    return new Promise( function (resolve){      // no need for reject bse its a timer
+        setTimeout(resolve, seconds * 1000);
+     });
+  };        
+
+
+  // consume
+  wait(2)
+    .then(() => {
+      console.log ('I waited for 2 seconds')
+      return wait(1);
+    })
+    .then(() => console.log('I waited for 1 second'));
+
+
+    Promise.resolve('abc').then(x => console.log(x));
+    // Promise.reject('abc').catch(x => console.error(x))
+    Promise.reject(new Error('Problem!')).catch(x => console.error(x))
