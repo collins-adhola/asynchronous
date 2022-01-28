@@ -1,27 +1,26 @@
-'use strict'
+"use strict";
 
-const btn = document.querySelector('.btn-country');
-const countriesContainer = document.querySelector('.countries');
+const btn = document.querySelector(".btn-country");
+const countriesContainer = document.querySelector(".countries");
 
-const renderCountry = function (data, className = " ") {
-  const html = `
-  <article class="country ${className}">
-    <img class="country__img" src="${data.flag}" />
-    <div class="country__data">
-      <h3 class="country__name">${data.name}</h3>
-      <h4 class="country__region">${data.region}</h4>
-      <p class="country__row"><span>👫</span>${(
-        +data.population / 1000000
-      ).toFixed(1)} people</p>
-      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
-    </div>
-  </article>
-  `;
-  countriesContainer.insertAdjacentHTML("beforeend", html);
-  countriesContainer.style.opacity = 1;
-};
-
+// const renderCountry = function (data, className = "") {
+//   const html = `
+//   <article class="country ${className}">
+//     <img class="country__img" src="${data.flag}" />
+//     <div class="country__data">
+//       <h3 class="country__name">${data.name}</h3>
+//       <h4 class="country__region">${data.region}</h4>
+//       <p class="country__row"><span>👫</span>${(
+//         +data.population / 1000000
+//       ).toFixed(1)} people</p>
+//       <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+//       <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+//     </div>
+//   </article>
+//   `;
+//   countriesContainer.insertAdjacentHTML("beforeend", html);
+//   countriesContainer.style.opacity = 1;
+// };
 
 const renderError = function (msg) {
   countriesContainer.insertAdjacentText("beforeend", msg);
@@ -63,14 +62,14 @@ const renderError = function (msg) {
 };
 
 getCountryData('Portugal');
+
  */
 
 
+
+
 //  Old way with callback inside
-// 
-
-
-
+//
 
 // const request = fetch(`https://restcountries.com/v2/name/portugal`);
 // console.log(request);
@@ -136,10 +135,7 @@ btn.addEventListener('click', function(){
  getCountryData('gdydud')
 */
 
-
 //shorter way of writting above error with Helper function.
-
-
 
 const getJSON = function (url, errorMsg = "Something went wrong") {
   return fetch(url).then((response) => {
@@ -149,41 +145,37 @@ const getJSON = function (url, errorMsg = "Something went wrong") {
   });
 };
 
+// const getCountryData = function (country) {
+//   // Country 1
+//   getJSON(`https://restcountries.com/v2/name/${country}`, "Country not found")
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
 
+//       if (!neighbour)
+//         throw (new Error("No neighbour found!"), console.log("baaaad"));
 
+//       // Country 2
+//       return getJSON(
+//         `https://restcountries.com/v2/alpha/${neighbour}`,
+//         "Country not found"
+//       );
+//     })
 
-const getCountryData = function (country) {
-  // Country 1
-  getJSON(`https://restcountries.com/v2/name/${country}`, "Country not found")
-    .then((data) => {
-      renderCountry(data[0]);
-      const neighbour = data[0].borders[0];
+//     .then((data) => renderCountry(data, "neighbour"))
 
-      if (!neighbour) throw new Error("No neighbour found!"), console.log('baaaad');
+//     .catch((err) => {
+//       console.error(`${err} 💥💥💥`);
+//       renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
 
-      // Country 2
-      return getJSON(
-        `https://restcountries.com/v2/alpha/${neighbour}`,
-        "Country not found"
-      );
-    })
-
-    .then((data) => renderCountry(data, "neighbour"))
-
-    .catch((err) => {
-      console.error(`${err} 💥💥💥`);
-      renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
-    })
-    .finally(() => {
-      countriesContainer.style.opacity = 1;
-    });
-};
-
-btn.addEventListener('click', function () {
-  getCountryData('ghana');
-});
-
-
+// btn.addEventListener("click", function () {
+//   getCountryData('uganda');
+// });
 
 ////////////////////////////////////Challenge #1/////////////////////////////////////////////
 /**
@@ -204,7 +196,7 @@ Test data:
 § Coordinates 3: -33.933, 18.474
 GOOD LUCK 😀
 
- */
+ 
 
 const whereAmI = function (lat, lng){ 
   fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
@@ -228,75 +220,213 @@ const whereAmI = function (lat, lng){
     .then(data => renderCountry(data[0]))
     .catch((err) => console.error(`${err.message} 💥`));
   };
+  */
 // whereAmI(52.508, 13.381);
 // whereAmI(19.037, 72.873);
 // whereAmI(-33.933, 18.474);
 
-console.log('*******************Test start***********************************');
+console.log("*******************Test start***********************************");
 
-setTimeout (()=> console.log('0 sec timer'), 0 );
-Promise.resolve('Resolved promise 1').then(res => 
-console.log(res));
+setTimeout(() => console.log("0 sec timer"), 0);
+Promise.resolve("Resolved promise 1").then((res) => console.log(res));
 
 Promise.resolve("Resolved promise 2").then((res) => {
-  for (let i = 0; i < 1000; i++){
-
-  }
-console.log(res)});
-console.log('Test end')
+  for (let i = 0; i < 1000; i++) {}
+  console.log(res);
+});
+console.log("Test end");
 
 //.......................................................
-const lotteryPromise = new Promise(function(resolve, reject) {
-  if (Math.random() >= 0.5){
-    resolve('You WIN 💰');
+const lotteryPromise = new Promise(function (resolve, reject) {
+  if (Math.random() >= 0.5) {
+    resolve("You WIN 💰");
   } else {
-    reject('You lost money 😔')
+    reject("You lost money 😔");
   }
 });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+lotteryPromise
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
 //********************************************************************************* */
 
 // encapsulate Ansynchronous behaviour into a promise
 
-const lotteryPromise2 = new Promise(function (resolve, reject){
-  console.log(' Lottery draw is on! ');
-  
+const lotteryPromise2 = new Promise(function (resolve, reject) {
+  console.log(" Lottery draw is on! ");
+
   setTimeout(function () {
     if (Math.random() >= 0.5) {
       resolve("You WIN!");
     } else {
-      reject(new Error("You lost your money!"));  // added error object.new Error
+      reject(new Error("You lost your money!")); // added error object.new Error
     }
-  }, 2000);  
+  }, 2000);
 });
-
 
 //consume the promise
 lotteryPromise2
   .then((res) => console.log(res))
   .catch((err) => console.error(err));
 
+/**************************************************************** */
+// Promisifying setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
 
-  /**************************************************************** */
-  
-  //Promisfying Settimeout
-  const wait = function(seconds) {
-    return new Promise( function (resolve){      // no need for reject bse its a timer
-        setTimeout(resolve, seconds * 1000);
-     });
-  };        
+wait(1)
+  .then(() => {
+    console.log("1 second passed");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("2 second passed");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("3 second passed");
+    return wait(1);
+  })
+  .then(() => console.log("4 second passed"));
 
+// setTimeout(() => {
+//   console.log('1 second passed');
+//   setTimeout(() => {
+//     console.log('2 seconds passed');
+//     setTimeout(() => {
+//       console.log('3 second passed');
+//       setTimeout(() => {
+//         console.log('4 second passed');
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
 
-  // consume
-  wait(2)
-    .then(() => {
-      console.log ('I waited for 2 seconds')
-      return wait(1);
+Promise.resolve("abc").then((x) => console.log(x));
+Promise.reject(new Error("Problem!")).catch((x) => console.error(x));
+
+///     Async await
+const whereAmI2 = async function (country) {
+  const res = await fetch(`https://restcountries.com/v2/name/${country}`);
+};
+// whereAmI2("UGANDA");
+// console.log("FIRST");
+
+//+++++++++++++++++++++++++++promisify+++++++++++++++++++++++
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(
+//       position => console.log(position),
+//       err => console.error(err)
+//     )
+//   });
+// };
+
+// Same as above but shorter
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => console.log(position),
+    //   (err) => console.error(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getPosition().then(pos => console.log(pos));
+
+const whereAmI = function () {
+  getPosition()
+    .then((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords; // Extracting latitude but creating variable lat
+
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
     })
-    .then(() => console.log('I waited for 1 second'));
+    .then((res) => {
+      if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+
+      return res.json();
+      console.log(res)
+    })
+    .then((data) => renderCountry(data[0]))
+   
+    .catch((err) => console.error(`${err.message} 💥`));
+};
+
+btn.addEventListener("click", whereAmI);
 
 
-    Promise.resolve('abc').then(x => console.log(x));
-    // Promise.reject('abc').catch(x => console.error(x))
-    Promise.reject(new Error('Problem!')).catch(x => console.error(x))
+
+// Challenge 2
+/**
+ For this challenge you will actually have to watch the video! Then, build the image loading functionality that I just showed you on the screen.
+Your tasks:
+Tasks are not super-descriptive this time, so that you can figure out some stuff by yourself. Pretend you're working on your own 😉
+PART 1
+1. Createafunction'createImage'whichreceives'imgPath'asaninput. This function returns a promise which creates a new image (use document.createElement('img')) and sets the .src attribute to the provided image path
+2. Whentheimageisdoneloading,appendittotheDOMelementwiththe 'images' class, and resolve the promise. The fulfilled value should be the image element itself. In case there is an error loading the image (listen for the'error' event), reject the promise
+3. Ifthispartistootrickyforyou,justwatchthefirstpartofthesolution
+PART 2
+4. Consumethepromiseusing.thenandalsoaddanerrorhandler
+5. Aftertheimagehasloaded,pauseexecutionfor2secondsusingthe'wait'
+function we created earlier
+6. Afterthe2secondshavepassed,hidethecurrentimage(setdisplayCSS
+property to 'none'), and load a second image (Hint: Use the image element returned by the 'createImage' promise to hide the current image. You will need a global variable for that 😉)
+7. Afterthesecondimagehasloaded,pauseexecutionfor2secondsagain
+8. Afterthe2secondshavepassed,hidethecurrentimage
+Test data: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to “Fast 3G” in the dev tools Network tab, otherwise images load too fast
+GOOD LUCK 😀
+*/
+
+const imgContainer = document.querySelector('.images');
+
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement('img');
+    img.src = imgPath;
+
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+};
+
+let currentImg;
+
+createImage('img/img-1.jpg')
+  .then(img => {
+    currentImg = img;
+    console.log('Image 1 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/img-2.jpg');
+  })
+  .then(img => {
+    currentImg = img;
+    console.log('Image 2 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+  })
+  .catch(err => console.error(err));
